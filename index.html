@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydro Tracker - Water Intake App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Hydro Tracker">
+    <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-tint"></i>
+                <h1>Hydro Tracker</h1>
+            </div>
+            <div class="date-time">
+                <span id="currentDate"></span>
+                <span id="currentTime"></span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Daily Goal Section -->
+            <section class="goal-section">
+                <h2>Daily Hydration Goal</h2>
+                <div class="goal-container">
+                    <div class="goal-input">
+                        <label for="dailyGoal">Goal (glasses):</label>
+                        <input type="number" id="dailyGoal" value="8" min="1" max="20">
+                        <button id="setGoal">Set Goal</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progress Section -->
+            <section class="progress-section">
+                <div class="progress-container">
+                    <div class="progress-circle">
+                        <svg class="progress-ring" width="200" height="200">
+                            <circle class="progress-ring-circle" cx="100" cy="100" r="80"></circle>
+                        </svg>
+                        <div class="progress-text">
+                            <span class="progress-number" id="glassesConsumed">0</span>
+                            <span class="progress-total">/ <span id="dailyGoalDisplay">8</span></span>
+                            <div class="progress-label">glasses</div>
+                        </div>
+                    </div>
+                    <div class="progress-percentage">
+                        <span id="progressPercentage">0%</span>
+                        <div>Complete</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Action Section -->
+            <section class="action-section">
+                <button class="drink-button" id="drinkButton">
+                    <i class="fas fa-plus"></i>
+                    <span>I Drank Water!</span>
+                </button>
+                <button class="undo-button" id="undoButton">
+                    <i class="fas fa-undo"></i>
+                    <span>Undo Last</span>
+                </button>
+            </section>
+
+            <!-- Water Glasses Visualization -->
+            <section class="glasses-section">
+                <h3>Today's Progress</h3>
+                <div class="glasses-container" id="glassesContainer">
+                    <!-- Water glasses will be generated here -->
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section class="stats-section">
+                <h3>Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <div class="stat-value" id="lastDrinkTime">--:--</div>
+                        <div class="stat-label">Last Drink</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-fire"></i>
+                        <div class="stat-value" id="streakDays">0</div>
+                        <div class="stat-label">Day Streak</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-calendar-week"></i>
+                        <div class="stat-value" id="weeklyAverage">0</div>
+                        <div class="stat-label">Weekly Avg</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Next Reminder Section -->
+            <section class="reminder-section">
+                <div class="reminder-card">
+                    <i class="fas fa-bell"></i>
+                    <div class="reminder-content">
+                        <h4>Next Reminder</h4>
+                        <div class="reminder-time" id="nextReminderTime">--:--</div>
+                        <div class="reminder-countdown" id="reminderCountdown">--</div>
+                    </div>
+                    <button class="reminder-toggle" id="reminderToggle">
+                        <i class="fas fa-toggle-on"></i>
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Notification Modal -->
+    <div class="notification-modal" id="notificationModal">
+        <div class="notification-content">
+            <div class="notification-icon">
+                <i class="fas fa-tint"></i>
+            </div>
+            <h3>Time to Hydrate!</h3>
+            <p>It's been an hour since your last drink. Time for some water!</p>
+            <div class="notification-buttons">
+                <button class="btn-primary" id="drinkNowButton">I'll Drink Now</button>
+                <button class="btn-secondary" id="snoozeButton">Snooze 10min</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Animation -->
+    <div class="success-animation" id="successAnimation">
+        <div class="water-drop">
+            <i class="fas fa-tint"></i>
+        </div>
+        <div class="success-text">Great job!</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
